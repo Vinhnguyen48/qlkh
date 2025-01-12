@@ -1,0 +1,303 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 200px;
+}
+
+.header-w {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(8, 125, 8);
+  color: white;
+
+  border-bottom: 3px solid black;
+  padding: 10px;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-left: 40px;
+  flex-grow: 2;
+}
+
+.logo img {
+  width: auto;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 20px;
+  margin-right: 50px;
+  margin-left: 40px;
+  flex-wrap: wrap;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background: white;
+  height: 35px;
+  width: 260px;
+  padding-left: 10px;
+  font-style: 40px;
+  border: 3px solid black;
+}
+
+.search-form input {
+  width: 260px;
+  border: none;
+  outline: none;
+}
+
+.search-form button {
+  border: none;
+  outline: none;
+  background: white;
+  width: 30px;
+  height: 29px;
+  border-radius: 50%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+/*foooter*/
+/* Footer styles */
+.ft {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.ft .ft-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.ft .ft-links li {
+  margin: 0 15px;
+}
+
+.ft .ft-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.main_w {
+  display: grid;
+  background-color: #bceba3;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  min-height: 540px;
+}
+
+.card {
+  flex: 1 1 calc(25% - 20px);
+  box-sizing: border-box;
+  max-width: calc(25% - 20px);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+#add_tk {
+  position: fixed; /* Cố định vị trí */
+  top: 120px; /* Cách header 20px */
+  right: 20px; /* Cách mép phải 20px */
+  z-index: 3; /* Hiển thị trên các phần tử khác */
+  text-align: center; /* Căn giữa nội dung */
+}
+.plus-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 20px;
+  margin-left: 25px;
+}
+
+.plus-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.plus-icon::before,
+.plus-icon::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.plus-icon::before {
+  width: 30px;
+  height: 10px;
+}
+
+.plus-icon::after {
+  width: 10px;
+  height: 30px;
+}
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Đặt chiều cao cố định */
+  object-fit: cover; /* Đảm bảo hình ảnh được cắt gọn để vừa kích thước */
+  border-radius: 10px; /* Bo góc hình ảnh */
+  margin-bottom: 10px; /* Thêm khoảng cách phía dưới */
+  transition: transform 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+}
+
+.update_add {
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%; /* Căn giữa theo chiều dọc */
+  left: 50%; /* Căn giữa theo chiều ngang */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Dịch chuyển lại một nửa chiều rộng và chiều cao để căn chính xác */
+  width: 100%; /* Chiều rộng 100% để không bị giới hạn */
+  height: 100%; /* Chiều cao chiếm toàn màn hình */
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  visibility: hidden;
+}
+.update_add.active {
+  visibility: visible;
+}
+.update_tt {
+  border: 2px solid black;
+  background: rgb(3, 108, 3);
+  border-radius: 15px;
+}
+
+.update_Thongtin,
+.update_user {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-style: normal;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+#address {
+  height: 40px;
+}
+.form-bt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.form-bt button {
+  background: white;
+}
+
+.form-bt button:hover {
+  background: red;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

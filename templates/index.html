@@ -1,0 +1,206 @@
+{% extends 'base.html' %} {% block title %} Customer Management {% endblock %}
+{%block content %}
+<div class="main_w">
+  <div class="col">
+    {% for customer in customerds.items %}
+    <div class="card">
+      <img src="{{customer.image}}" class="card-img-top" alt="customer image" />
+      <div class="card-body">
+        <h5 class="card-title">{{ customer.full_name }}</h5>
+        <p class="card-text">
+          <strong>Tên tài khoản:</strong> {{ customer.user.username }}<br />
+          <strong>Email:</strong> {{ customer.emaillh }}<br />
+          <strong>Địa chỉ:</strong> {{ customer.address }}<br />
+          <strong>Tuổi:</strong> {{ customer.age }}<br />
+          <strong>Giới tính:</strong> {{ customer.gender }}<br />
+          <strong>CCCD:</strong> {{ customer.cccd }}
+        </p>
+        <div>
+          <a
+            href="{{ url_for('admin.update', id=customer.id) }}"
+            class="btn btn-warning btn-sm"
+            >Sửa</a
+          >
+          <a
+            href="{{ url_for('admin.delete', id=customer.id) }}"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Bạn có chắc chắn muốn xóa không?');"
+            >Xóa</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <div id="add_tk">
+      <div class="plus-icon"></div>
+      <p>Thêm Thông tin</p>
+    </div>
+  </div>
+</div>
+
+<div class="pagination">
+  {% if customerds.has_prev %}
+  <a
+    href="{{ url_for('admin.index', page=customerds.prev_num) }}"
+    class="btn btn-outline-primary btn-sm"
+    >&laquo;</a
+  >
+  {% endif %}
+
+  <span class="page-info"
+    >Trang {{ customerds.page }} /{{ customerds.pages }}</span
+  >
+
+  {% if customerds.has_next %}
+  <a
+    href="{{ url_for('admin.index', page=customerds.next_num) }}"
+    class="btn btn-outline-primary btn-sm"
+    >&raquo;</a
+  >
+  {% endif %}
+  <!--them thong tin tai khoan-->
+
+  <div class="update_add">
+    <div class="update_kh">
+      <form
+        action="{{url_for('admin.add')}}"
+        method="post"
+        class="update_tt"
+        id="form_sua"
+        enctype="multipart/form-data"
+      >
+        <div class="update_Thongtin">
+          <h5 class="up_title">Cập nhật thông tin khách hàng</h5>
+
+          <!-- Họ và Tên -->
+          <div class="input-group">
+            <label for="fullname">Họ và Tên:</label>
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              placeholder="Nhập họ và tên"
+              required
+            />
+          </div>
+
+          <!-- CCCD -->
+          <div class="input-group">
+            <label for="cccd">CCCD:</label>
+            <input
+              type="text"
+              id="cccd"
+              name="cccd"
+              placeholder="Nhập số CCCD"
+              required
+            />
+          </div>
+
+          <!-- Tuổi -->
+          <div class="input-group">
+            <label for="age">Tuổi:</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Nhập tuổi"
+              required
+            />
+          </div>
+          <!--image KH -->
+          <div class="input-group">
+            <label for="image_kh"> Ảnh :</label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              accept="image/*"
+              required
+            />
+          </div>
+          <!-- Giới tính -->
+          <div class="input-group">
+            <label for="gender">Giới tính:</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>-- Chọn giới tính --</option>
+              <option value="male">Nam</option>
+              <option value="female">Nữ</option>
+              <option value="other">Khác</option>
+            </select>
+          </div>
+
+          <!-- Email liên hệ -->
+          <div class="input-group">
+            <label for="emaillh">Email-Liên hệ:</label>
+            <input
+              type="email"
+              id="emaillh"
+              name="emaillh"
+              placeholder="Nhập email liên hệ"
+              required
+            />
+          </div>
+
+          <!-- Địa chỉ -->
+          <div class="input-group">
+            <label for="address">Địa chỉ:</label>
+            <textarea
+              id="address"
+              name="address"
+              placeholder="Nhập địa chỉ"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="update_user">
+          <h5>Thông tin tài khoản</h5>
+
+          <!-- Tên tài khoản -->
+          <div class="input-group">
+            <label for="username">User:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Nhập tên tài khoản"
+              required
+            />
+          </div>
+
+          <!-- Email tài khoản -->
+          <div class="input-group">
+            <label for="email">Email-Tk:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Nhập email tài khoản"
+              required
+            />
+          </div>
+
+          <!-- Mật khẩu -->
+          <div class="input-group">
+            <label for="password">Pass:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-bt">
+          <button type="submit" class="btn">Thêm</button>
+          <button type="reset" class="btn" id="bt_huy">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

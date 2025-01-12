@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="shortcut icon"
+      href="../static/image/icon_logo.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="../static/js/login.js"></script>
+    <title> OTTS </title>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header-w">
+        <div class="logo">
+          <a href="../templates/login.html">
+            <img src="../static/image/icon_logo.png" alt="Logo" id="icon_logo" />
+          </a>
+          <h2>Thông tin khách hàng OTTS</h2>
+        </div>
+
+        <nav class="header-menu">
+          <div class="search-w">
+            <form action="/search" method="get" class="search-form">
+              <input type="text" name="search_tt" placeholder="Tìm kiếm..." />
+              <button type="submit">🔍</button>
+            </form>
+          </div>
+          <div class="login-sign">
+            <button id="login-bt">Đăng nhập</button>
+            <button id="sign-bt">Đăng ký</button>
+          </div>
+        </nav>
+      </header>
+
+      <main class="main_w">
+        <div class="login-signup">
+          <section class="login-f">
+            <div class="close">
+            <button id="exit-f">&#215</button>
+            </div>
+            <form action="{{ url_for('accounts.dang_nhap') }}" method="post" class="login-form">
+              <h2>Đăng Nhập</h2>
+              <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="123@gmail.com" required />
+              </div>
+
+              <div class="input-group">
+                <label for="password">Pass:</label>
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn">Đăng Nhập</button>
+              </div>
+
+              <div class="signup-link">
+                <p>Chưa có tài khoản? <a href="#" id="signup-links">Đăng ký</a></p>
+              </div>
+            </form>
+          </section>
+          
+          <section class="signup-f">
+            
+            <form action="{{ url_for('accounts.dang_ky') }}" method="post" class="sign-form">
+              <div class="close_sign">
+                <button id="exit_f">&#215</button>
+                </div>
+              <h2>Đăng Ký</h2>
+              <div class="input-group">
+                <label for="username">User:</label>
+                <input type="text" id="username" name="username" placeholder="Tên người dùng" required />
+              </div>
+              <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="123@gmail.com" required />
+              </div>
+              <div class="input-group">
+                <label for="password">Pass:</label>
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn">Đăng Ký</button>
+              </div>
+              <div class="login-link">
+                <p>Đã có tài khoản? <a href="#"id="login-links">Đăng nhập</a></p>
+              </div>
+            </form>
+          </section>
+         
+        </div>
+          
+
+        <div class="T_bao">
+          <div class="content-tbao">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert {{ category }}">
+                    <p>{{ message }}</p>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
+        
+        <div class="main_web">
+            
+          <div class="images">
+            <div class="images-c">
+              <img src="../static/image/image3.jpg" alt="Slide 1" />
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="ft">
+        <div class="ctn">
+          <ul class="ft-links">
+            <li><a href="{{ url_for('accounts.dang_nhap') }}">Trang Chủ</a></li>
+            <li><a href="#">Giới Thiệu</a></li>
+            <li><a href="#">Liên Hệ</a></li>
+            <li><a href="#">Trợ Giúp</a></li>
+          </ul>
+        </div>
+      </footer>
+      
+      
+    </div>
+    
+  </body>
+  
+</html>

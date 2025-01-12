@@ -1,0 +1,38 @@
+<header class="header-w">
+  <div class="logo">
+    <a href="../templates/layout.html">
+      <img src="../static/image/icon_logo.png" alt="Logo" id="icon_logo" />
+    </a>
+    <h2>Thông tin khách hàng OTTS</h2>
+  </div>
+
+  <nav class="header-menu">
+    <div class="search-w">
+      <form
+        action="{{url_for('admin.index')}}"
+        method="get"
+        class="search-form"
+      >
+        <input
+          type="text"
+          name="search_tt"
+          value="{{ searchtk or '' }}" 
+          placeholder="Tìm kiếm..."
+        />
+        <button type="submit">🔍</button>
+      </form>
+    </div>
+    <i class="bi bi-person-bounding-box" style="font-size: 1.5rem"></i>
+    <label>admin</label>
+    <div class="dropdown">
+      <i
+        class="bi bi-three-dots-vertical"
+        style="cursor: pointer; font-size: 24px"
+      ></i>
+      <div class="dropdown-menu">
+        <a href="#">Thông tin</a>
+        <a href="#">Đăng xuất</a>
+      </div>
+    </div>
+  </nav>
+</header>
