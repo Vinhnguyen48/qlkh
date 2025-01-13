@@ -48,8 +48,7 @@ def update(id):
             filename = secure_filename(file.filename)
             filepath = os.path.join(upload_folder, filename)
             file.save(filepath)  
-            image_kh = filepath.split("..", 1)[-1]
-            customer.image =  image_kh
+            customer.image =  filepath
         customer.age = request.form['age']
         customer.gender = request.form['gender']
         customer.cccd = request.form['cccd']

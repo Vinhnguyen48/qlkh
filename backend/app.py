@@ -13,17 +13,9 @@ def main_web():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///qlkh.db' 
     app.config['SECRET_KEY'] = 'jhdsfisfjfijsfisjfisfif'
 
-    # Cấu hình LoginManager
-    login_manager = LoginManager()
-    login_manager.init_app(app)
 
-    # Cấu hình route đăng nhập
-    login_manager.login_view = "tk.login"
-
-
-    BASE_DIR = os.path.abspath(__file__)
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, '../static/uploads')
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    image_users = os.path.join( '../static/image_user')
+    app.config['UPLOAD_FOLDER'] = image_users
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     
     db.init_app(app)
