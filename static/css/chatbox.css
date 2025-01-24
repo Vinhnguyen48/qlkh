@@ -1,0 +1,175 @@
+/* Tinh tế hơn với kiểu dáng các phần tử */
+.header {
+  background-color: #343a40;
+  padding: 10px 0;
+}
+.header .nav-link {
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.header .nav-link:hover {
+  color: #007bff;
+}
+
+.main-container {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.profile-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.profile-details h2,
+.account-details h2 {
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #495057;
+}
+
+/* Căn chỉnh label và input cùng hàng */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.form-group label {
+  width: 200px; /* Đặt width cho label để chúng đồng đều */
+  margin-right: 10px; /* Khoảng cách giữa label và input */
+  flex-shrink: 0;
+}
+
+/* Đặt các nút "Chỉnh sửa" nằm ngoài và thẳng hàng dọc */
+.btn-container {
+  display: flex;
+  flex-direction: column; /* Đặt các nút vào một cột */
+  gap: 10px; /* Khoảng cách giữa các nút */
+  margin-left: 20px; /* Khoảng cách từ input đến các nút */
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #495057;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #007bff;
+}
+
+/* Hiệu ứng cho phần nhập liệu khi hiển thị */
+.hidden-input {
+  display: none;
+  width: 350px;
+}
+
+/* Khi nút chỉnh sửa xuất hiện */
+.form_bt {
+  display: none; /* Ẩn nhóm nút chỉnh sửa */
+}
+
+/* Thẻ chứa nội dung chỉnh sửa */
+.tt_nd {
+  width: 350px;
+}
+
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat window */
+.chatbox {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+}
+
+.chatbox-header {
+  display:flex ;
+  columns: 1;
+  background-color: #25d366;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+h5{
+  width: 250px;
+}
+.chatbox-body {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chatbox-footer {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.chatbox-footer input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.chatbox-footer button {
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.form_bt {
+  display: none;
+  padding-left: 10px;
+  width: 300px; /* Hiển thị nhóm nút chỉnh sửa */
+}

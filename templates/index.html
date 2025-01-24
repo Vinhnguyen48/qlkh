@@ -9,7 +9,7 @@
         <h5 class="card-title">{{ customer.full_name }}</h5>
         <p class="card-text">
           <strong>Tên tài khoản:</strong> {{ customer.user.username }}<br />
-          <strong>Email:</strong> {{ customer.emaillh }}<br />
+          <strong>Số điện thoại:</strong> {{ customer.sdt }}<br />
           <strong>Địa chỉ:</strong> {{ customer.address }}<br />
           <strong>Tuổi:</strong> {{ customer.age }}<br />
           <strong>Giới tính:</strong> {{ customer.gender }}<br />
@@ -130,14 +130,14 @@
             </select>
           </div>
 
-          <!-- Email liên hệ -->
+          <!-- Sđt liên hệ -->
           <div class="input-group">
-            <label for="emaillh">Email-Liên hệ:</label>
+            <label for="sdt">Số điện thoại:</label>
             <input
-              type="email"
-              id="emaillh"
-              name="emaillh"
-              placeholder="Nhập email liên hệ"
+              type="text"
+              id="sdt"
+              name="sdt"
+              placeholder="Nhập số điện thoại"
               required
             />
           </div>

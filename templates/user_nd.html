@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/chatbox.css" />
+    <script src="../static/js/user.js"></script>
+    <title>User Profile</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tài khoản</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container container">
+      <form action="{{url_for('customer.update_user')}}" method="post">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <!-- Profile Section -->
+            <div class="profile-card">
+              <div class="profile-image text-center">
+                <img
+                  src="../static/image/icon_logo.png"
+                  alt="Profile Picture"
+                />
+              </div>
+              <div class="profile-details">
+                <h2>Thông Tin Cá Nhân</h2>
+
+                <!-- Tên Người Dùng -->
+                <div class="form-group">
+                  <label for="full_name" class="form-label"
+                    >Tên Người Dùng</label
+                  >
+                  <div id="full_name-display" class="tt_nd">
+                    {{customer.full_name}}
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control hidden-input"
+                    id="full_name"
+                    name="full_name"
+                    value="{{customer.full_name}}"
+                    placeholder="Nhập Họ và tên"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('full_name')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="full_name_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('full_name')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Căn Cước Công Dân -->
+                <div class="form-group">
+                  <label for="cccd" class="form-label">Căn Cước Công Dân</label>
+                  <div id="cccd-display" class="tt_nd">{{customer.cccd}}</div>
+                  <input
+                    type="text"
+                    class="form-control hidden-input"
+                    id="cccd"
+                    name="cccd"
+                    value="{{customer.cccd}}"
+                    placeholder="Nhập căn cước công dân"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('cccd')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="cccd_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('cccd')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+                 
+
+                <!-- Giới Tính -->
+                <div class="form-group">
+                  <label for="gender" class="form-label">Giới Tính</label>
+                  <div id="gender-display" class="tt_nd">Nam</div>
+                  <select
+                    class="form-control hidden-input"
+                    id="gender"
+                    name="gender"
+                    required
+                  >
+                  <option value="male" {% if customer.gender == 'male' %} selected {% endif %}>Nam</option>
+                  <option value="female" {% if customer.gender == 'female' %} selected {% endif %}>Nữ</option>
+                  <option value="other" {% if customer.gender == 'other' %} selected {% endif %}>Khác</option>
+                  </select>
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('gender')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="gender_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('gender')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Tuổi -->
+                <div class="form-group">
+                  <label for="age" class="form-label">Tuổi</label>
+                  <div id="age-display" class="tt_nd">{{customer.age}}</div>
+                  <input
+                    type="text"
+                    class="form-control hidden-input"
+                    id="age"
+                    name="age"
+                    value="{{customer.age}}"
+                    placeholder="Nhập tuổi"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('age')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="age_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('age')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Số Điện Thoại -->
+                <div class="form-group">
+                  <label for="sdt" class="form-label">Số Điện Thoại</label>
+                  <div id="sdt-display" class="tt_nd">{{customer.sdt}}</div>
+                  <input
+                    type="text"
+                    class="form-control hidden-input"
+                    id="sdt"
+                    name="sdt"
+                    value="{{customer.sdt}}"
+                    placeholder="Nhập số điện thoại"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('sdt')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="sdt_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('sdt')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Địa Chỉ -->
+                <div class="form-group">
+                  <label for="dc" class="form-label">Địa Chỉ</label>
+                  <div id="dc-display" class="tt_nd">{{customer.dc}}</div>
+                  <input
+                    type="text"
+                    class="form-control hidden-input"
+                    id="dc"
+                    name="dc"
+                    value="{{customer.dc}}"
+                    placeholder="Nhập địa chỉ"
+                  />
+                  <button type="button" class="btn btn-link" onclick="cs('dc')">
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="dc_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('dc')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Account Details -->
+              <div class="account-details">
+                <h2>Thông Tin Tài Khoản</h2>
+
+                <div class="form-group">
+                  <label for="name_use" class="form-label">Tên Tài Khoản</label>
+                  <div id="name_use-display" class="tt_nd">
+                    {{user.username}}
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control hidden-input"
+                    id="name_use"
+                    name="name_use"
+                    value="{{user.username}}"
+                    placeholder="Nhập tên tài khoản"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('name_use')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="name_use_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('name_use')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email_use" class="form-label">Email</label>
+                  <div id="email_use-display" class="tt_nd">{{user.email}}</div>
+                  <input
+                    type="email"
+                    class="form-control hidden-input"
+                    id="email_use"
+                    name="email_use"
+                    value="{{user.email}}"
+                    autocomplete="email"
+                    placeholder="Nhập email"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('email_use')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="email_use_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('email_use')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="form-label">Mật Khẩu</label>
+                  <div id="password-display" class="tt_nd">*******</div>
+                  <input
+                    type="password"
+                    class="form-control hidden-input"
+                    id="password"
+                    name="password"
+                    placeholder="Nhập mật khẩu"
+                    autocomplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    onclick="cs('password')"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <div class="form_bt" id="password_btn">
+                    <button type="submit" class="btn btn-primary">
+                      Cập nhật
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="huy('password')"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
+    <button
+      class="chatbot-button"
+      onclick="document.getElementById('chatbox').style.display='flex'"
+    >
+      💬
+    </button>
+
+    <!-- Chatbox -->
+    <div class="chatbox" id="chatbox">
+      <div class="chatbox-header">
+        <h5>Chatbot</h5>
+        <button onclick="closeChatbox()">X</button>
+      </div>
+      <div class="chatbox-body" id="chatbox-body">
+        <div><b>Chatbot:</b> Hello, how can I help you?</div>
+      </div>
+      <div class="chatbox-footer">
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          <a href="#">Trang Chủ</a>
+          <a href="#">Giới Thiệu</a>
+          <a href="#">Liên Hệ</a>
+          <a href="#">Trợ Giúp</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -2,64 +2,74 @@ from flask import Blueprint, render_template, current_app, request, redirect, ur
 from backend.app import db
 from werkzeug.utils import secure_filename
 import os
+import uuid
 from backend.model.qlkh import Customer, User
 from werkzeug.security import generate_password_hash
+from flask_login import login_required, logout_user, current_user
 
 admin = Blueprint('admin', __name__)
-
-
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif'}
 
 
-
 @admin.route('/', methods=['GET'])
+@login_required
 def index():
-    page = request.args.get('page', 1, type=int) 
-    per_page = 8 
-    search =  request.args.get('search_tt', '')
+    if current_user.role != 'admin': 
+        flash('Bạn không có quyền truy cập trang này.', 'error')
+        return redirect(url_for('accounts.index'))
+
+    page = request.args.get('page', 1, type=int)
+    per_page = 8
+    search = request.args.get('search_tt', '')
     if search:
-       
         customerds = Customer.query.join(User).filter(
-            (Customer.full_name.ilike(f'%{search}%')) |  
-            (User.username.ilike(f'%{search}%')) |      
-            (User.email.ilike(f'%{search}%'))           
+            (Customer.full_name.ilike(f'%{search}%')) |
+            (User.username.ilike(f'%{search}%')) |
+            (User.email.ilike(f'%{search}%'))
         ).paginate(page=page, per_page=per_page, error_out=False)
     else:
-        customerds = Customer.query.paginate(page=page, per_page=per_page, error_out=False)  
-    return render_template('index.html', customerds=customerds,searchtk=search)
+        customerds = Customer.query.paginate(page=page, per_page=per_page, error_out=False)
+    return render_template('index.html', customerds=customerds, searchtk=search)
 
 
 @admin.route('/update/<int:id>', methods=['GET', 'POST'])
+@login_required
 def update(id):
+    if current_user.role != 'admin':
+        flash('Bạn không có quyền truy cập trang này.', 'error')
+        return redirect(url_for('accounts.index'))
+
     customer = Customer.query.get_or_404(id)
     user = User.query.get_or_404(customer.user_id)
-  
-    
 
     if request.method == 'POST':
         customer.full_name = request.form['fullname']
         
-        #up image
+        # Upload ảnh
         file = request.files['file']
-        if file :
-            upload_folder = current_app.config['UPLOAD_FOLDER']
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(upload_folder, filename)
-            file.save(filepath)  
-            customer.image =  filepath
+        if file:
+          random_filename = str(uuid.uuid4()) + os.path.splitext(file.filename)[-1]
+          upload_folder = current_app.config['UPLOAD_FOLDER']
+          filename = secure_filename(random_filename)
+          filepath = os.path.join(upload_folder, filename)
+          file.save(filepath)
+          relative_path = os.path.relpath(filepath, start=os.path.abspath(os.path.join(upload_folder, '..')))
+          image = f"../static/{relative_path}"
+          print("image")
+          customer.image = image
+
+        
         customer.age = request.form['age']
         customer.gender = request.form['gender']
         customer.cccd = request.form['cccd']
         customer.address = request.form['address']
-        customer.email = request.form['emaillh']
-        
+        customer.sdt = request.form['sdt']
+
         user.username = request.form['username']
         user.email = request.form['email']
         password = request.form['password']
-
-
 
         if password:
             user.password = generate_password_hash(password)
@@ -69,8 +79,15 @@ def update(id):
         return redirect(url_for('admin.index'))
 
     return render_template('update.html', customer=customer, user=user)
+
+# Xóa khách hàng
 @admin.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
 def delete(id):
+    if current_user.role != 'admin':
+        flash('Bạn không có quyền truy cập trang này.', 'error')
+        return redirect(url_for('accounts.index'))
+
     customer = Customer.query.get_or_404(id)
     user = User.query.get_or_404(customer.user_id)
     db.session.delete(user)
@@ -78,10 +95,16 @@ def delete(id):
     db.session.commit()
     flash('Khách hàng đã được xóa thành công!', 'success')
     return redirect(url_for('admin.index'))
-@admin.route('/add', methods=['POST', 'GET'])
-def add():
-    if request.method == 'POST':
 
+# Thêm khách hàng mới
+@admin.route('/add', methods=['POST', 'GET'])
+@login_required
+def add():
+    if current_user.role != 'admin':
+        flash('Bạn không có quyền truy cập trang này.', 'error')
+        return redirect(url_for('accounts.index'))
+
+    if request.method == 'POST':
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
@@ -90,16 +113,18 @@ def add():
         age = request.form.get('age')
         gender = request.form.get('gender')
         address = request.form.get('address')
-        emaillh = request.form.get('emaillh')
-
+        sdt = request.form.get('sdt')
         file = request.files['file']
-        upload_folder = current_app.config['UPLOAD_FOLDER']
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(upload_folder, filename)
-        file.save(filepath)  
-        image_kh = filepath.split("..", 1)[-1]
-        image =  image_kh
-        
+        if file:
+          random_filename = str(uuid.uuid4()) + os.path.splitext(file.filename)[-1]
+          upload_folder = current_app.config['UPLOAD_FOLDER']
+          filename = secure_filename(random_filename)
+          filepath = os.path.join(upload_folder, filename)
+          file.save(filepath)
+          relative_path = os.path.relpath(filepath, start=os.path.abspath(os.path.join(upload_folder, '..')))
+          image = f"../static/{relative_path}"
+          print("image")
+
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email đã tồn tại. Vui lòng chọn email khác.', 'error')
@@ -123,9 +148,9 @@ def add():
             cccd=cccd,
             age=age,
             gender=gender,
+            sdt=sdt,
             image=image,
             address=address,
-            emaillh=emaillh
         )
         db.session.add(new_customer)
         db.session.commit()
@@ -135,4 +160,9 @@ def add():
     
     return render_template('index.html') 
 
-
+# Đăng xuất
+@admin.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('accounts.index'))

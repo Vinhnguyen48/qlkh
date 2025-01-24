@@ -1,6 +1,7 @@
 from backend.app import main_web
 
-flask_app = main_web()
+# Khởi tạo ứng dụng Flask
+app = main_web()
 
-if __name__== '__main__':
-    flask_app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
