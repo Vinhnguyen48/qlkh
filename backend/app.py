@@ -4,7 +4,8 @@ from flask_migrate import Migrate
 from flask_login import LoginManager, current_user
 from datetime import timedelta
 import os
-
+from flask_socketio import SocketIO, emit
+from flask_cors import CORS
 db = SQLAlchemy()
 login_manager = LoginManager()
 
@@ -17,10 +18,10 @@ def main_web():
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     app.config['UPLOAD_FOLDER'] = os.path.join( BASE_DIR,'../static/image_user')
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-
+    socketio = SocketIO(app)
     db.init_app(app)
     Migrate(app, db)
-
+    CORS(app)
     # kt Flask-Login
     login_manager.init_app(app)
     login_manager.login_view = 'accounts.index'

@@ -75,7 +75,6 @@ def update(id):
             user.password = generate_password_hash(password)
         
         db.session.commit()
-        flash('Cập nhật thông tin thành công!', 'success')
         return redirect(url_for('admin.index'))
 
     return render_template('update.html', customer=customer, user=user)

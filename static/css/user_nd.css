@@ -1,6 +1,6 @@
 /* Tinh tế hơn với kiểu dáng các phần tử */
 .header {
-  background-color: #343a40;
+  background-color:  rgb(8, 125, 8);
   padding: 10px 0;
 }
 .header .nav-link {
@@ -96,7 +96,6 @@
 .tt_nd {
   width: 350px;
 }
-
 .chatbot-button {
   position: fixed;
   bottom: 20px;
@@ -111,7 +110,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Chat window */
+/* Chatbox styles */
 .chatbox {
   position: fixed;
   bottom: 70px;
@@ -122,13 +121,13 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: none;
+  display: none;  /* Hidden by default */
   flex-direction: column;
 }
 
 .chatbox-header {
-  display:flex ;
-  columns: 1;
+  display: flex;
+  justify-content: space-between;
   background-color: #25d366;
   color: white;
   padding: 10px;
@@ -137,9 +136,6 @@
   border-top-right-radius: 10px;
 }
 
-h5{
-  width: 250px;
-}
 .chatbox-body {
   flex-grow: 1;
   padding: 10px;
@@ -168,6 +164,14 @@ h5{
   border-radius: 5px;
 }
 
+/* Close button */
+.chatbox-header button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
 .form_bt {
   display: none;
   padding-left: 10px;
