@@ -1,0 +1,89 @@
+
+.chatbox {
+    bottom: 70px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex; /* Hidden by default */
+    flex-direction: column;
+  }
+  
+  .chatbox-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #25d366;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .chatbox-body {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .chatbox-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .chatbox-footer input {
+    border: 1px solid #ccc;
+    padding: 2px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .chatbox-footer button {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  .ds_kh {
+    position: fixed;
+    top: 100px;  /* Cách dưới 100px */
+    right: 30px;    /* Cách phải 30px */
+    display: flex;
+    flex-direction: column; /* Xếp icon và chữ theo chiều dọc */
+    align-items: center;    /* Căn giữa các phần tử theo chiều ngang */
+    z-index: 1000;          /* Đảm bảo phần tử hiển thị trên các phần tử khác */
+  }
+  
+  .icon-container {
+    width: 50px;    /* Kích thước icon */
+    height: 50px;   /* Kích thước icon */
+    background-color: #28a745; /* Màu nền xanh lá cây */
+    border-radius: 50%;         /* Hình tròn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .icon-container i {
+    font-size: 24px; /* Kích thước biểu tượng */
+    color: white;
+  }
+  
+  .ds_kh p {
+    font-size: 12px;   /* Kích thước chữ */
+    color: black;      /* Màu chữ */
+    margin-top: 5px;    /* Khoảng cách giữa icon và chữ */
+    text-align: center; /* Căn giữa chữ */
+  }
+  

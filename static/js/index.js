@@ -12,3 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
     bt_capnhat.style.display = "none";
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("messenger-icon").addEventListener("click", function() {
+    window.location.href = "/admin/chat_mes";
+  });
+});

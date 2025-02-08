@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block title %}OTTS{% endblock %}
-{%block content %}
+{% extends 'base.html' %} {% block title %}OTTS{% endblock %} {%block content %}
 <div class="main_w">
   <div class="col">
     {% for customer in customerds.items %}
@@ -31,11 +30,24 @@
       </div>
     </div>
     {% endfor %}
-
     <div id="add_tk">
-      <div class="plus-icon"></div>
+      <div class="icon-container1">
+        <div class="plus-icon"></div>
+      </div>
       <p>Thêm Thông tin</p>
     </div>
+    <div class="ds_mes">
+      <div class="icon-mes" id="messenger-icon">
+        <i class="fas fa-envelope"></i> <!-- Biểu tượng hộp thư từ FontAwesome -->
+      </div>
+      <p>Danh sách tin nhắn</p>
+    </div>
+      
+
+    
+
+
+
   </div>
 </div>
 

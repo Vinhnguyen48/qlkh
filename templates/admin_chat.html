@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main_w">
+    <div class="ds_kh">
+        <div class="icon-container" id="customer-list-icon">
+            <i class="fas fa-users"></i> 
+          </div>  
+          <p>Danh sách khách hàng</p> 
+    </div>
+    
+  <div class="col">
+    {% for id_kh in ds_id %}
+    <div class="chatbox" id="chatbox-{{ id_kh }}" data-id="{{ id_kh }}">
+      <div class="chatbox-header">
+        <h5>{{ user_names[id_kh] }}</h5>
+      </div>
+      <div class="chatbox-body" id="chatbox-body-{{ id_kh }}">
+      </div>
+      <div class="chatbox-footer">
+        <form onsubmit="sendMessage(event, '{{ id_kh }}')">
+          <input
+            type="text"
+            id="message-input-{{ id_kh }}"
+            placeholder="Nhập tin nhắn..."
+            name="message-{{ id_kh }}" />
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+  
+
+    
+  </div>
+</div>
+{% endblock %}
+
+

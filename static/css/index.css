@@ -146,6 +146,7 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
+  min-height: 83vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,4 +301,63 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+.icon-mes {
+  position: fixed;
+  top: 300px;
+  right: 40px;
+  width: 55px;
+  height: 55px; /* Kích thước biểu tượng */
+  background-color: #007bff; /* Màu xanh đặc trưng cho biểu tượng */
+  border-radius: 50%; /* Hình tròn */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ nhẹ */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2000;
+  flex-direction: column;
+  text-align: center;
+  padding: 5px; /* Thêm khoảng cách bên trong */
+}
+.icon-mes i {
+  font-size: 30px; /* Kích thước biểu tượng */
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.ds_mes {
+  position: fixed;
+  top: 120px; /* Cách trên 120px */
+  right: 10px; /* Cách phải 30px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+.icon-mes {
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-mes i {
+  font-size: 24px;
+  color: white;
+}
+
+.ds_mes p {
+  font-size: 14px;
+  color: black;
+  margin-top: 250px;
 }

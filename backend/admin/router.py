@@ -1,9 +1,11 @@
-from flask import Blueprint, render_template, current_app, request, redirect, url_for, flash
+from datetime import datetime
+from flask import Blueprint, jsonify, render_template, current_app, request, redirect, url_for, flash
+from sqlalchemy import or_
 from backend.app import db
 from werkzeug.utils import secure_filename
 import os
 import uuid
-from backend.model.qlkh import Customer, User
+from backend.model.qlkh import Customer, Message, User
 from werkzeug.security import generate_password_hash
 from flask_login import login_required, logout_user, current_user
 
@@ -12,7 +14,15 @@ admin = Blueprint('admin', __name__)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif'}
 
-
+'''
+-lay danh sach id tin nhắn 
+- 1-2,2-1,3-1,4-1,1-4 {2,3,4} loai bỏ id là 1 => số người nhắn tin 
+for hien thi so nguoi nhắn tin với ad --> lay id tung item de hien thị tin nhắn 
+-phân chia theo từng id khách hàng 
+- su dung list chua tin nhan list 1 = [{id:1,mes : xxx}]
+-chuyển đổi về json  api tin nhan
+-sd api chuyen du lieu sang frontend
+'''
 @admin.route('/', methods=['GET'])
 @login_required
 def index():
@@ -79,7 +89,7 @@ def update(id):
 
     return render_template('update.html', customer=customer, user=user)
 
-# Xóa khách hàng
+
 @admin.route('/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 def delete(id):
@@ -158,6 +168,62 @@ def add():
         return redirect(url_for('admin.index'))
     
     return render_template('index.html') 
+
+
+@admin.route('/chat_mes',methods=['GET','POST'])
+@login_required
+def chat_mes():
+   messages = Message.query.filter(
+    or_(Message.sender_id != 1, Message.receiver_id != 1)).all()
+   ds_id = set()
+   for message in messages:
+        if message.sender_id != 1:
+            ds_id.add(message.sender_id)
+        if message.receiver_id != 1:
+            ds_id.add(message.receiver_id)
+
+   ds_id = sorted(list(ds_id))
+   customers = Customer.query.filter(Customer.id.in_(ds_id)).all()
+   user_names = {customer.id: customer.full_name for customer in customers}
+   return render_template('admin_chat.html', ds_id=ds_id, user_names=user_names)
+  
+'''
+- id gui :1 id nhan 2 ;id  ||| gui :2 id nhan:1 || tin nhan || thoi gian
+'''
+
+@admin.route('/get_messages/<int:id>', methods=['GET'])
+@login_required
+def get_messages(id):
+    sender_id = id  
+    receiver_id = 1  
+    messages = Message.query.filter(
+        ((Message.sender_id == sender_id) & (Message.receiver_id == receiver_id)) |
+        ((Message.sender_id == receiver_id) & (Message.receiver_id == sender_id))
+    ).order_by(Message.timestamp.asc()).all()
+    messages_data = [{"sender": msg.sender.username, "message": msg.message, "timestamp": msg.timestamp} for msg in messages]
+    print(f"sender_id: {sender_id}, receiver_id: {receiver_id}")
+    return jsonify(messages_data)
+
+
+@admin.route('/send_mes/<int:id>', methods=['POST'])
+@login_required
+def send_mes(id):
+    sender_id = 1  
+    receiver_id = id  
+    data = request.get_json()
+    message = data['message']
+    if message:
+        message_obj = Message(
+            sender_id=sender_id,
+            receiver_id=receiver_id,
+            message=message,
+            timestamp=datetime.utcnow()
+        )
+        db.session.add(message_obj)
+        db.session.commit()
+    else:
+        return jsonify({"status": "error", "message": "Tin nhắn trống"}), 400
+
 
 # Đăng xuất
 @admin.route('/logout')
