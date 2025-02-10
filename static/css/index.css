@@ -317,7 +317,7 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ nhẹ */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 2000;
+  z-index: 2;
   flex-direction: column;
   text-align: center;
   padding: 5px; /* Thêm khoảng cách bên trong */
