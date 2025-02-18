@@ -20,7 +20,7 @@ body {
 
   border-bottom: 3px solid black;
   padding: 10px;
-  z-index: 1000;
+  z-index: 2;
   position: sticky;
   top: 0;
 }
@@ -95,7 +95,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 4000;
+  z-index: 2;
   width: 100px;
 }
 
@@ -161,6 +161,7 @@ button {
   color: white;
   cursor: pointer;
 }
+
 .col {
   display: flex;
   flex-wrap: wrap; /* Cho phép các phần tử xuống hàng khi không đủ chỗ */
@@ -192,15 +193,15 @@ button {
 @media (max-width: 600px) {
   .card {
     flex: 1 1 100%;
-    max-width: 100%;
+    max-width: 80%;
   }
 }
 
 #add_tk {
   position: fixed; /* Cố định vị trí */
-  bottom: 200px; /* Cách header 20px */
+  bottom: 120px; /* Cách header 20px */
   right: 10px; /* Cách mép phải 20px */
-  z-index: 2000; /* Hiển thị trên các phần tử khác */
+  z-index: 3; /* Hiển thị trên các phần tử khác */
   text-align: center; /* Căn giữa nội dung */
 }
 .plus-icon {
@@ -254,7 +255,7 @@ button {
 }
 
 .update_add {
-  z-index: 2000;
+  z-index: 4;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -333,7 +334,7 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ nhẹ */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 2000;
+  z-index: 2;
   flex-direction: column;
   text-align: center;
   padding: 5px; /* Thêm khoảng cách bên trong */
@@ -351,7 +352,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 3;
+  z-index: 2;
 }
 
 .icon-mes {
@@ -373,7 +374,9 @@ button {
 }
 
 .ds_mes p {
+  position: fixed;
   font-size: 14px;
   color: black;
-  margin-top: 250px;
+  top: 380px;
+  right: 10px;
 }

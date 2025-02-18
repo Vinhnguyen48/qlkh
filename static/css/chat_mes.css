@@ -58,9 +58,13 @@
   display: flex;
   flex-direction: column; /* Xếp icon và chữ theo chiều dọc */
   align-items: center; /* Căn giữa các phần tử theo chiều ngang */
-  z-index: 2; /* Đảm bảo phần tử hiển thị trên các phần tử khác */
+  z-index: 1000; /* Đảm bảo phần tử hiển thị trên các phần tử khác */
 }
-
+@media (max-width: 600px) {
+  .ds_kh {
+    top: 300px; /* Cách dưới 100px */
+  }
+}
 .icon-container {
   width: 50px; /* Kích thước icon */
   height: 50px; /* Kích thước icon */
