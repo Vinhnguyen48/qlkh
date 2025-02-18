@@ -3,7 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const add_bt = document.getElementById("add_tk");
   const bt_capnhat = document.getElementById("bt_capnhat");
   const form_tt = document.querySelector(".update_add");
-
+  if (add_bt)
+    {
+      console.log("co du lieu")
+    } 
+  
   huy_bt.addEventListener("click", () => {
     form_tt.classList.remove("active");
   });
@@ -11,10 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     form_tt.classList.add("active");
     bt_capnhat.style.display = "none";
   });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("messenger-icon").addEventListener("click", function() {
     window.location.href = "/admin/chat_mes";
   });
 });
+

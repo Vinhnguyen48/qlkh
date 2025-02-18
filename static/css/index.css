@@ -95,7 +95,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 4000;
   width: 100px;
 }
 
@@ -161,10 +161,9 @@ button {
   color: white;
   cursor: pointer;
 }
-
 .col {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Cho phép các phần tử xuống hàng khi không đủ chỗ */
   gap: 20px;
   justify-content: center;
   max-width: 1200px;
@@ -172,7 +171,7 @@ button {
 }
 
 .card {
-  flex: 1 1 calc(25% - 20px);
+  flex: 1 1 calc(25% - 20px); /* Kích thước mặc định */
   box-sizing: border-box;
   max-width: calc(25% - 20px);
   border: 1px solid #ccc;
@@ -180,11 +179,28 @@ button {
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* Khi màn hình nhỏ hơn 1024px, các thẻ card sẽ chiếm 50% chiều rộng */
+@media (max-width: 1024px) {
+  .card {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+/* Khi màn hình nhỏ hơn 600px, các thẻ card sẽ chiếm 100% chiều rộng */
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
 #add_tk {
   position: fixed; /* Cố định vị trí */
-  top: 120px; /* Cách header 20px */
-  right: 20px; /* Cách mép phải 20px */
-  z-index: 3; /* Hiển thị trên các phần tử khác */
+  bottom: 200px; /* Cách header 20px */
+  right: 10px; /* Cách mép phải 20px */
+  z-index: 2000; /* Hiển thị trên các phần tử khác */
   text-align: center; /* Căn giữa nội dung */
 }
 .plus-icon {
@@ -238,7 +254,7 @@ button {
 }
 
 .update_add {
-  z-index: 2;
+  z-index: 2000;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -335,7 +351,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1000;
+  z-index: 3;
 }
 
 .icon-mes {

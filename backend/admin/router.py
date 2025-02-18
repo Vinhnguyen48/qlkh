@@ -90,7 +90,7 @@ def update(id):
     return render_template('update.html', customer=customer, user=user)
 
 
-@admin.route('/delete/<int:id>', methods=['GET', 'POST'])
+@admin.route('/delete/<int:id>', methods=[ 'GET','POST'])
 @login_required
 def delete(id):
     if current_user.role != 'admin':
